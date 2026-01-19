@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prédiction de churn client</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>📉 Prédiction de désabonnement (Churn)</h1>
+      <p>
+        Saisis les informations d’un client pour estimer le risque de churn
+        à partir de ton modèle de machine learning.
+      </p>
+    </header>
+
+    <main class="app-main">
+      <section class="card">
+        <h2 class="card-title">Données client</h2>
+        <form id="churn-form" class="form-grid">
+          <div class="form-group">
+            <label for="gender">Genre</label>
+            <select name="gender" id="gender">
+              <option>Female</option>
+              <option>Male</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="SeniorCitizen">SeniorCitizen (0 ou 1)</label>
+            <input type="number" name="SeniorCitizen" id="SeniorCitizen" min="0" max="1" value="0">
+          </div>
+
+          <div class="form-group">
+            <label for="Partner">Partner</label>
+            <select name="Partner" id="Partner">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Dependents">Dependents</label>
+            <select name="Dependents" id="Dependents">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="tenure">Ancienneté (tenure, en mois)</label>
+            <input type="number" name="tenure" id="tenure" min="0" value="5">
+          </div>
+
+          <div class="form-group">
+            <label for="PhoneService">PhoneService</label>
+            <select name="PhoneService" id="PhoneService">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="MultipleLines">MultipleLines</label>
+            <select name="MultipleLines" id="MultipleLines">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No phone service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="InternetService">InternetService</label>
+            <select name="InternetService" id="InternetService">
+              <option>DSL</option>
+              <option>Fiber optic</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="OnlineSecurity">OnlineSecurity</label>
+            <select name="OnlineSecurity" id="OnlineSecurity">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="OnlineBackup">OnlineBackup</label>
+            <select name="OnlineBackup" id="OnlineBackup">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="DeviceProtection">DeviceProtection</label>
+            <select name="DeviceProtection" id="DeviceProtection">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="TechSupport">TechSupport</label>
+            <select name="TechSupport" id="TechSupport">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="StreamingTV">StreamingTV</label>
+            <select name="StreamingTV" id="StreamingTV">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="StreamingMovies">StreamingMovies</label>
+            <select name="StreamingMovies" id="StreamingMovies">
+              <option>No</option>
+              <option>Yes</option>
+              <option>No internet service</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Contract">Contract</label>
+            <select name="Contract" id="Contract">
+              <option>Month-to-month</option>
+              <option>One year</option>
+              <option>Two year</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="PaperlessBilling">PaperlessBilling</label>
+            <select name="PaperlessBilling" id="PaperlessBilling">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="PaymentMethod">PaymentMethod</label>
+            <select name="PaymentMethod" id="PaymentMethod">
+              <option>Electronic check</option>
+              <option>Mailed check</option>
+              <option>Bank transfer (automatic)</option>
+              <option>Credit card (automatic)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="MonthlyCharges">MonthlyCharges</label>
+            <input type="number" name="MonthlyCharges" id="MonthlyCharges" step="0.1" value="70">
+          </div>
+
+          <div class="form-group">
+            <label for="TotalCharges">TotalCharges</label>
+            <input type="number" name="TotalCharges" id="TotalCharges" step="0.1" value="350">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Prédire le churn</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card card-result">
+        <h2 class="card-title">Résultat</h2>
+        <p id="result" class="result-placeholder">
+          Remplis le formulaire puis clique sur <strong>“Prédire le churn”</strong>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>
+        Mini-projet ML · Churn télécom · Flask &amp; Frontend simple
+      </small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

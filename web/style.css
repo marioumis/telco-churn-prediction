@@ -1,0 +1,202 @@
+/* Mise en page globale */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #0f766e);
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Conteneur principal */
+.app {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.app-header p {
+  font-size: 0.95rem;
+  color: #cbd5f5;
+}
+
+/* Layout principal : formulaire + résultat côte à côte sur grand écran */
+.app-main {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+  gap: 20px;
+}
+
+/* Carte (card) */
+.card {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #f9fafb;
+}
+
+/* Formulaire en grille */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+
+.form-group input,
+.form-group select {
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+/* Bouton */
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.btn-primary {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow:
+    0 10px 20px rgba(22, 163, 74, 0.35),
+    0 0 0 1px rgba(22, 163, 74, 0.45);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 16px 28px rgba(22, 163, 74, 0.45),
+    0 0 0 1px rgba(22, 163, 74, 0.65);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 10px 18px rgba(22, 163, 74, 0.4),
+    0 0 0 1px rgba(22, 163, 74, 0.8);
+}
+
+/* Résultat */
+.card-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.result-placeholder {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.result {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.result--risk {
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.7);
+  color: #fecaca;
+}
+
+.result--safe {
+  background: rgba(22, 163, 74, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.7);
+  color: #bbf7d0;
+}
+
+.result--error {
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(250, 204, 21, 0.7);
+  color: #facc15;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .app-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    justify-content: center;
+  }
+}
